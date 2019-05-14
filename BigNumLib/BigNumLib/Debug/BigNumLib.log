@@ -1,0 +1,5 @@
+﻿  BigNumLib.cpp
+c:\users\alexa\source\repos\bignumlib\bignumlib\bignumlib.cpp(13): error C2561: 'NumFuncs::BigNumFuncs::operator +': function must return a value
+  c:\users\alexa\source\repos\bignumlib\bignumlib\bignumlib.cpp(10): note: see declaration of 'NumFuncs::BigNumFuncs::operator +'
+c:\users\alexa\source\repos\bignumlib\bignumlib\bignumlib.cpp(23): error C2561: 'NumFuncs::BigNumFuncs::operator -': function must return a value
+  c:\users\alexa\source\repos\bignumlib\bignumlib\bignumlib.cpp(20): note: see declaration of 'NumFuncs::BigNumFuncs::operator -'
