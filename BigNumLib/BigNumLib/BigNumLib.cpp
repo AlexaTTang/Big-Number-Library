@@ -7,74 +7,151 @@ using namespace std;
 
 namespace NumFuncs
 {
-	std::vector <int> ::operator +(unsigned long long int numAdded)
-	/*unsigned long long int BigNumFuncs::operator +(unsigned long long int numAdded)
+
+	std::vector<int>  BigNumFuncs::operator +(unsigned long long int numAdded)
 	{
-		unsigned long long int result = 0;
+		std::vector <int> number = numberIntoVector(numAdded);
+		std::vector <int> result;
+		int holder;
 		if (bigNum.empty())
 		{
-			return;
+			return bigNum;
 		}
 		else
 		{
-			result = bigNum.back() + numAdded;
-			bigNum.push_back(result);
-		}
+			for (int i = bigNum.size(); i <= 0; i--)
+			{
+				for (int j = number.size(); j <= 0; j--)
+				{
+					holder = bigNum[i] + number[j];
+					//checking if carrying in necessary
+					if (holder >= 10)
+					{
+						holder = holder % 10; //gets the last digit
+						result.insert(result.begin(), holder);//place at the front like stack
+						holder = holder / 10 % 10; //gets the first digit
+						holder = holder + bigNum[i + 1]; // carries the first digit
+					}
+					else
+					{
+						result.insert(result.begin(), holder); //place at the end of the vector
+					}
+					
+				}
+			}
 		
+		}
 		return result;
 	}
-	unsigned long long int BigNumFuncs::operator -(unsigned long long int numSubtracted)
+
+	std::vector<int> BigNumFuncs::operator-(unsigned long long int numSubtracted)
 	{
-		unsigned long long int result = 0;
+		std::vector <int> number = numberIntoVector(numSubtracted);
+		std::vector <int> result;
+		int holder;
 		if (bigNum.empty())
 		{
-			return;
+			return bigNum;
 		}
 		else
 		{
-			result = bigNum.back() - numSubtracted;
-			bigNum.push_back(result);
-		}
+			for (int i = bigNum.size(); i <= 0; i--)
+			{
+				for (int j = number.size(); j <= 0; j--)
+				{
+					//holder = bigNum[i] - number[j];
+					//checking last digit in bigNum is less than last digit in number
+					if (bigNum[i] < number[j])
+					{
+						holder = bigNum[i];
+						bigNum[i] = holder + 10;//borrowing a one
+						holder = bigNum[i] - number[j]; //subtracting last digits
+						result.insert(result.begin(), holder); //place at the end of the vector
+						bigNum[i - 1] = bigNum[i - 1] - 1; //"borrowing" one from the second to last digit of bigNum
+					}
+					else
+					{
+						holder = bigNum[i] - number[j];
+						result.insert(result.begin(), holder);
+					}
 
+				}
+			}
+
+		}
 		return result;
 	}
-	unsigned long long int BigNumFuncs::operator *(unsigned long long int numMultiplied)
+
+	std::vector<int> BigNumFuncs::operator *(unsigned long long int numMultiplied)
 	{
+		std::vector <int> number = numberIntoVector(numMultiplied);
+		std::vector <int> result;
+		int holder;
 		if (bigNum.empty())
 		{
-			return;
+			return bigNum;
 		}
-		
-	}
-	unsigned long long int BigNumFuncs::operator /(unsigned long long int numDivided)
-	{
-		int flag = 0;
-		std::vector<unsigned long long int> holder;
-		holder[] = numDivided;
-		while (holder <= bigNum)
+		else
 		{
-			flag++;
-
+			int k = number.size();
+			while (k >= 0)
+			{
+				for (int i = bigNum.size(); i <= 0; i--)
+				{
+					if ((bigNum[i] * number[k]) >= 10)
+					{
+						holder = bigNum[i] * number[i];
+						holder = holder % 10;  //gets the last digit
+						result.insert(result.begin(), holder); //place at the end of the vector
+						holder = holder / 10 % 10; //get the first digit
+						holder = (bigNum[i + 1] * number[i]) + holder; //adding the first digit of product >= 10
+					}
+					else
+					{
+						holder = bigNum[i] * number[i];
+						result.insert(result.begin(), holder); //place at the end of the vector
+					}
+				}
+				k--;
+			}
+			
 		}
-
-	}
-	double BigNumFuncs::Add(double a, double b)
-	{
-		return a + b;
+		return result;
 	}
 
-	double BigNumFuncs::Subtract(double a, double b)
+	//std::vector<int> BigNumFuncs::operator /(unsigned long long int numDivided)
+	//{
+	//	/*std::vector <int> number = numberIntoVector(numDivided);*/
+	//	std::vector <int> result;
+	//	int i = 0;
+	//	int holder = bigNum[0];
+	//	return result;
+	//	bool flag = false;
+	//	while (flag)
+	//	{
+	//		while (numDivided < holder)
+	//		{
+	//			holder += holder * pow(10, (i + 1));
+	//			i++;
+	//		}
+
+	//	}
+	//}
+
+	//private helper method to change unsigned long long int into a vector that holds integers
+	std::vector<int> BigNumFuncs::numberIntoVector(unsigned long long int number)
 	{
-		return a - b;
+		unsigned long long int x;
+		std::vector<int> num;
+		while (number != 0)
+		{
+			x = number % 10;
+			number = number / 10;
+
+			num.emplace(num.begin(), x);
+		}
+		return num;
 	}
 
-	double BigNumFuncs::Multiply(double a, double b)
-	{
-		return a * b;
-	}
-
-	double BigNumFuncs::Divide(double a, double b)
-	{
-		return a / b;
-	}*/
+	
 }

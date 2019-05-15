@@ -10,42 +10,20 @@ namespace NumFuncs
 	public:
 		//for 1,000 digits 100 unsigned long int: 0 to 4,294,967,295
 		//50 unsigned long long int: 0 to 18,446,744,073,709,551,615
-		std::vector<unsigned long long int> bigNum;
+		std::vector<int> bigNum;
 		unsigned long long int num;
+		int length = 0;
 
-		BigNumFuncs(std::vector<unsigned long long int> v)
+		BigNumFuncs(std::vector<int> v)
 		{
 			bigNum = v;
 		}
-		unsigned long long int operator +(unsigned long long int numAdded);
-
-		unsigned long long int operator-(unsigned long long int numSubtracted);
-		unsigned long long int operator *(unsigned long long int numMultiplied);
+		std::vector<int> operator +(unsigned long long int numAdded);
+		std::vector<int> operator-(unsigned long long int numSubtracted);
+		std::vector<int> operator /(unsigned long long int numDivided);
+		std::vector<int> operator *(unsigned long long int numMultiplied);
+		std::vector<int> numberIntoVector(unsigned long long int number); //helper method to change unsigned long long int to an integer vector 
 		
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Returns a + b
-		static double Add(double a, double b);
-
-		// Returns a - b
-		static double Subtract(double a, double b);
-
-		// Returns a * b
-		static double Multiply(double a, double b);
-
-		// Returns a / b
-		static double Divide(double a, double b);
 	};
 }
